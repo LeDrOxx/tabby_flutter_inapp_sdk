@@ -60,17 +60,13 @@ class _TabbyPresentationSnippetState extends State<TabbyPresentationSnippet> {
       ),
     );
     _browser.open(
-      url: Uri.parse(
+      url: WebUri.uri(Uri.parse(
         '${snippetWebUrls[widget.lang]}'
-        '?price=${widget.price}&currency=${widget.currency.displayName}$sdkQuery',
-      ),
-      options: ChromeSafariBrowserClassOptions(
-        android: AndroidChromeCustomTabsOptions(
-            shareState: CustomTabsShareState.SHARE_STATE_OFF),
-        ios: IOSSafariOptions(
-          presentationStyle: IOSUIModalPresentationStyle.POPOVER,
-        ),
-      ),
+            '?price=${widget.price}&currency=${widget.currency.displayName}$sdkQuery',
+      )),
+      settings: ChromeSafariBrowserSettings(
+          shareState: CustomTabsShareState.SHARE_STATE_OFF,
+          presentationStyle: ModalPresentationStyle.POPOVER),
     );
   }
 
